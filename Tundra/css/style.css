@@ -66,23 +66,33 @@
     height: 80vmin;
 }
 
-/* base icon style */
-.icon-wheel img {
+/* base icon container (NOW handles positioning) */
+.icon-wheel a {
     position: absolute;
-    width: 18vmin;
-    height: 18vmin;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
 
     top: 50%;
     left: 50%;
+
+    width: 18vmin;
+    height: 18vmin;
 
     margin-left: -9vmin;
     margin-top: -9vmin;
 
     transform-origin: center center;
+
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
+
+/* image only handles visuals */
+.icon-wheel a img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
 
 /* a roda */
 
@@ -117,11 +127,6 @@
 .novoicon {
     transform: rotate(315deg) translateY(calc(-1 * var(--radius))) rotate(-315deg);
 }
-
-.icon-wheel img {
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
 
 
 
