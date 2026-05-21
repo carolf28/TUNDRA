@@ -12,7 +12,7 @@
     position: relative;
     width: 100vw;
     height: 100vh;
-    background-image: url("/assets/images/background-image.webp");
+    background-image: url("assets/images/background-image.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -126,4 +126,26 @@
     text-shadow:
         0 0 10px rgba(0, 255, 255, 0.8),
         0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+.wheel-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+
+    pointer-events: none;
+
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+/* show state */
+.wheel-label.active {
+    opacity: 1;
 }
