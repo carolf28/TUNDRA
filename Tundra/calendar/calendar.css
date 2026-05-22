@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: white;
+    font-family: Arial, sans-serif;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../assets/images/background-image.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* PAGE WRAPPER */
+.calendar-page {
+    min-height: 100vh;
+    padding: 5vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* HEADER */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    gap: 3vmin;
+    margin-bottom: 4vmin;
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3vmin;
+    cursor: pointer;
+
+    transition: opacity 0.2s ease;
+}
+
+.calendar-header button:hover {
+    opacity: 0.5;
+}
+
+.empty {
+    aspect-ratio: 1;
+}
+
+#monthTitle {
+    font-size: 3vmin;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+}
+
+/* CALENDAR GRID */
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1vmin;
+
+    width: 80vmin;
+}
+
+/* DAYS */
+.day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.8vmin;
+    color: #aaa;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+
+    transition: all 0.2s ease;
+}
+
+/* HOVER */
+.day:hover {
+    background: rgba(0, 255, 255, 0.08);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* EVENT DAY */
+.day.event {
+    background: rgba(0, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(0, 255, 255, 0.4);
+    font-weight: bold;
+}
