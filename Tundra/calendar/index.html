@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,25 +11,63 @@
 
 <body>
 
-    <section class="calendar-page">
+    <div class="page-container">
 
-        <!-- Header -->
-<div class="calendar-header">
+        <section class="calendar-page">
 
-    <button id="prevMonth">←</button>
+            <div class="calendar-layout">
 
-    <h1 id="monthTitle"></h1>
+                <!-- LEFT SIDE -->
+                <div class="calendar-left">
 
-    <button id="nextMonth">→</button>
+                    <!-- HEADER -->
+                    <div class="calendar-header">
 
-</div>
+                        <h1 id="monthTitle"></h1>
 
-        <!-- Calendar grid -->
-        <div id="calendar"></div>
+                        <div class="calendar-nav">
 
-    </section>
+                            <button id="prevMonth"><</button>
+
+                            <button id="nextMonth">></button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- WEEKDAYS -->
+                    <div class="weekdays">
+                        <div>S</div>
+                        <div>T</div>
+                        <div>Q</div>
+                        <div>Q</div>
+                        <div>S</div>
+                        <div>S</div>
+                        <div>D</div>
+                    </div>
+
+                    <!-- CALENDAR GRID -->
+                    <div id="calendar"></div>
+
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="calendar-right">
+
+                    <div id="eventInfo">
+                        <p>Click on an event day</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
 
     <script src="calendar.js"></script>
 
 </body>
+
 </html>

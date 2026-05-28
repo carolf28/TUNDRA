@@ -4,11 +4,32 @@
     box-sizing: border-box;
 }
 
+/* IMPORTANT VARIABLES */
+:root {
+    --page-padding: 5vmin;
+    --layout-gap: clamp(10vmin, 14vw, 40vmin);
+    --grid-gap: 1.5vmin;
+
+    --text-dark: #000;
+    --text-light: #fff;
+}
+
+/* CURSOR */
+body,
+a,
+button,
+img {
+    cursor: url("../assets/icons/cursor.png") 16 16, auto;
+}
+
+/* BODY */
 body {
-    color: white;
-    font-family: Arial, sans-serif;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+
+    font-family: Times New Roman, sans-serif;
+    color: var(--text-light);
+
     background-image: url("../assets/images/background-image.webp");
     background-size: cover;
     background-position: center;
@@ -16,29 +37,109 @@ body {
 }
 
 /* PAGE WRAPPER */
-.calendar-page {
+.page-container {
+    width: 100%;
     min-height: 100vh;
-    padding: 5vmin;
+    padding: var(--page-padding);
+}
+
+/* PAGE STRUCTURE */
+.calendar-page {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: flex-start;
+
+    min-height: 100vh;
+}
+
+/* MAIN LAYOUT */
+.calendar-layout {
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+
+    gap: var(--layout-gap);
+    width: 100%;
+
+    align-items: start;
+}
+
+/* LEFT COLUMN */
+.calendar-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 100%;
+    max-width: 70vmin;
+}
+
+/* RIGHT COLUMN */
+.calendar-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    min-height: 60vh;
+    color: var(--text-dark);
+}
+
+/* EVENT INFO */
+#eventInfo {
+    font-size: 2vmin;
+    line-height: 1.5;
+}
+
+#eventInfo h2 {
+    margin-bottom: 1vmin;
+
+    font-size: 2.5vmin;
+    font-weight: 400;
+}
+
+#eventInfo p {
+    opacity: 0.8;
 }
 
 /* HEADER */
 .calendar-header {
+    width: 100%;
+
     display: flex;
     align-items: center;
-    gap: 3vmin;
+    justify-content: space-between;
+
     margin-bottom: 4vmin;
 }
 
+/* MONTH TITLE */
+#monthTitle {
+    margin: 0;
+    color:#000;
+    font-size: 2.5vmin;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* NAVIGATION */
+.calendar-nav {
+    display: flex;
+    align-items: center;
+gap: clamp(2vmin, 4vw, 6vmin);
+}
+
+/* BUTTONS */
 .calendar-header button {
     background: none;
     border: none;
-    color: white;
-    font-size: 3vmin;
+    padding: 0;
+
+    color: var(--text-dark);
+    font-size: 2.5vmin;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+
     cursor: pointer;
+    line-height: 1;
 
     transition: opacity 0.2s ease;
 }
@@ -47,54 +148,83 @@ body {
     opacity: 0.5;
 }
 
-.empty {
-    aspect-ratio: 1;
-}
+/* WEEKDAYS */
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--grid-gap);
 
-#monthTitle {
-    font-size: 3vmin;
-    font-weight: 400;
+    width: 100%;
+
+    margin-bottom: var(--grid-gap);
+
+    font-size: 1.6vmin;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: white;
+
+    color: var(--text-dark);
+}
+
+.weekdays div {
+    text-align: center;
 }
 
 /* CALENDAR GRID */
 #calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 1vmin;
-
-    width: 80vmin;
+    gap: var(--grid-gap);
+    width: 100%;
 }
 
-/* DAYS */
+/* EMPTY CELLS */
+.empty {
+    aspect-ratio: auto;
+}
+
+/* DAY CELLS */
 .day {
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 0.7;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
     font-size: 1.8vmin;
-    color: #aaa;
-
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-dark);
 
     transition: all 0.2s ease;
+    will-change: transform;
 }
 
 /* HOVER */
 .day:hover {
     background: rgba(0, 255, 255, 0.08);
-    color: white;
+    color: var(--text-light);
     transform: scale(1.05);
+    z-index: 2;
 }
 
-/* EVENT DAY */
+/* EVENT DAYS */
 .day.event {
     background: rgba(0, 255, 255, 0.15);
-    color: white;
-    border: 1px solid rgba(0, 255, 255, 0.4);
+    color: var(--text-light);
     font-weight: bold;
+
+    border: 1px solid rgba(0, 255, 255, 0.4);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .calendar-layout {
+        grid-template-columns: 1fr;
+        gap: 6vmin;
+    }
+
+    .calendar-right {
+        margin-top: 4vmin;
+        padding-top: 4vmin;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
 }

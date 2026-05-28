@@ -4,6 +4,8 @@ const monthTitle = document.getElementById("monthTitle");
 const prevBtn = document.getElementById("prevMonth");
 const nextBtn = document.getElementById("nextMonth");
 
+const eventInfo = document.getElementById("eventInfo");
+
 /* ADICIONAR OS EVENTOS AQUI */
 const events = [
   {
@@ -17,6 +19,10 @@ const events = [
   {
     date: "2026-06-12",
     title: "Archive Session"
+  },
+  {
+    date: "2026-07-12",
+    title: "Album release"
   }
 ];
 
@@ -26,6 +32,7 @@ const today = new Date();
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
 
+/* MONTH NAMES (PT-PT) */
 const monthNames = [
   "Janeiro", "Fevereiro", "Março", "Abril",
   "Maio", "Junho", "Julho", "Agosto",
@@ -35,28 +42,24 @@ const monthNames = [
 /* RENDER CALENDAR */
 function renderCalendar(month, year) {
 
-    /* clear old calendar */
     calendarEl.innerHTML = "";
 
-    /* update title */
     monthTitle.textContent = `${monthNames[month]} ${year}`;
 
-    /* first + last day */
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
 
     const totalDays = lastDay.getDate();
-
-    /* empty spaces before month starts */
     const startDay = firstDay.getDay();
 
+    /* empty cells */
     for (let i = 0; i < startDay; i++) {
         const emptyEl = document.createElement("div");
         emptyEl.classList.add("empty");
         calendarEl.appendChild(emptyEl);
     }
 
-    /* build days */
+    /* days */
     for (let day = 1; day <= totalDays; day++) {
 
         const dayEl = document.createElement("div");
@@ -64,19 +67,23 @@ function renderCalendar(month, year) {
 
         dayEl.textContent = day;
 
-        /* format date */
         const dateStr =
             `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
-        /* check events */
         const event = events.find(e => e.date === dateStr);
 
         if (event) {
             dayEl.classList.add("event");
-            dayEl.title = event.title;
+
+            /* CLICK → SHOW EVENT ON RIGHT PANEL */
+            dayEl.addEventListener("click", () => {
+                eventInfo.innerHTML = `
+                    <h2>${event.title}</h2>
+                    <p>${event.date}</p>
+                `;
+            });
         }
 
-        /* highlight today */
         const todayStr = today.toISOString().split("T")[0];
 
         if (dateStr === todayStr) {
@@ -113,5 +120,5 @@ nextBtn.addEventListener("click", () => {
     renderCalendar(currentMonth, currentYear);
 });
 
-/* 🚀 INITIAL RENDER */
+/* INITIAL RENDER */
 renderCalendar(currentMonth, currentYear);
