@@ -5,25 +5,20 @@ const prevBtn = document.getElementById("prevMonth");
 const nextBtn = document.getElementById("nextMonth");
 
 const eventInfo = document.getElementById("eventInfo");
+const secondEvent = document.getElementById("secondEvent");
 
-/* ADICIONAR OS EVENTOS AQUI */
+/* ADD EVENTS HERE */
 const events = [
-  {
-    date: "2026-05-24",
-    title: "TUNDRA Screening"
-  },
-  {
-    date: "2026-05-28",
-    title: "Sound Intervention"
-  },
-  {
-    date: "2026-06-12",
-    title: "Archive Session"
-  },
-  {
-    date: "2026-07-12",
-    title: "Album release"
-  }
+    {
+        date: "2026-07-12",
+        title: "Album release",
+        type: "tundra"
+    },
+    {
+        date: "2026-07-22",
+        title: "Marcha",
+        type: "second"
+    }
 ];
 
 /* START AT CURRENT MONTH */
@@ -34,9 +29,9 @@ let currentYear = today.getFullYear();
 
 /* MONTH NAMES (PT-PT) */
 const monthNames = [
-  "Janeiro", "Fevereiro", "Março", "Abril",
-  "Maio", "Junho", "Julho", "Agosto",
-  "Setembro", "Outubro", "Novembro", "Dezembro"
+    "Janeiro", "Fevereiro", "Março", "Abril",
+    "Maio", "Junho", "Julho", "Agosto",
+    "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 
 /* RENDER CALENDAR */
@@ -52,14 +47,14 @@ function renderCalendar(month, year) {
     const totalDays = lastDay.getDate();
     const startDay = firstDay.getDay();
 
-    /* empty cells */
+    /* Empty cells */
     for (let i = 0; i < startDay; i++) {
         const emptyEl = document.createElement("div");
         emptyEl.classList.add("empty");
         calendarEl.appendChild(emptyEl);
     }
 
-    /* days */
+    /* Days */
     for (let day = 1; day <= totalDays; day++) {
 
         const dayEl = document.createElement("div");
@@ -73,14 +68,42 @@ function renderCalendar(month, year) {
         const event = events.find(e => e.date === dateStr);
 
         if (event) {
+
             dayEl.classList.add("event");
 
-            /* CLICK → SHOW EVENT ON RIGHT PANEL */
+            if (event.type === "second") {
+                dayEl.classList.add("blue");
+            }
+
             dayEl.addEventListener("click", () => {
-                eventInfo.innerHTML = `
-                    <h2>${event.title}</h2>
-                    <p>${event.date}</p>
-                `;
+
+                /* Remove previous selection */
+                document.querySelectorAll(".day.selected").forEach(day => {
+                    day.classList.remove("selected");
+                });
+
+                /* Select current event */
+                dayEl.classList.add("selected");
+
+                if (event.type === "second") {
+
+                    secondEvent.classList.remove("hidden");
+
+                    secondEvent.innerHTML = `
+                        <h2>${event.title}</h2>
+                        <p>${event.date}</p>
+                    `;
+
+                } else {
+
+                    secondEvent.classList.add("hidden");
+
+                    /* Existing magenta event behaviour */
+                    eventInfo.innerHTML = `
+                        <h2>${event.title}</h2>
+                        <p>${event.date}</p>
+                    `;
+                }
             });
         }
 
