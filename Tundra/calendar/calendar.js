@@ -7,16 +7,51 @@ const nextBtn = document.getElementById("nextMonth");
 const eventInfo = document.getElementById("eventInfo");
 const secondEvent = document.getElementById("secondEvent");
 
+
+
 /* ADD EVENTS HERE */
 const events = [
     {
-        date: "2026-07-12",
+        date: "2026-07-18",
+        type: "tundra",
+
         title: "Album release",
-        type: "tundra"
+
+        image: "assets/eventimages/event1.webp",
+
+        caption: "The debut album is finally available on all streaming platforms.",
+
+        link: {
+            text: "Listen now",
+            url: "https://link.com"
+        }
     },
+
+    {
+        date: "2026-07-12",
+        type: "tundra",
+
+        title: "OUTRO",
+
+        image: "assets/images/events/outro.webp",
+
+        caption: "Description of the OUTRO event goes here.",
+
+        link: {
+            text: "More info",
+            url: "https://your-link.com"
+        }
+    },
+
     {
         date: "2026-07-22",
-        title: "Marcha",
+        title: "marcha da visibilidade trans encontro no martim moniz 15H",
+        type: "second"
+    },
+
+    {
+        date: "2026-07-20",
+        title: "marcha 2 16H",
         type: "second"
     }
 ];
@@ -87,22 +122,44 @@ function renderCalendar(month, year) {
 
                 if (event.type === "second") {
 
+                    const top = Math.random() * 50 + 25;
+                    const left = Math.random() * 50 + 25;
+
+                    secondEvent.style.top = `${top}%`;
+                    secondEvent.style.left = `${left}%`;
+
                     secondEvent.classList.remove("hidden");
 
                     secondEvent.innerHTML = `
                         <h2>${event.title}</h2>
-                        <p>${event.date}</p>
                     `;
-
                 } else {
 
                     secondEvent.classList.add("hidden");
 
-                    /* Existing magenta event behaviour */
-                    eventInfo.innerHTML = `
-                        <h2>${event.title}</h2>
-                        <p>${event.date}</p>
-                    `;
+                eventInfo.innerHTML = `
+                    <p class="event-date">${event.date}</p>
+
+                    <h2>${event.title}</h2>
+
+                    <img
+                        class="event-image"
+                        src="${event.image}"
+                        alt="${event.title}"
+                    >
+
+                    <p class="event-caption">
+                        ${event.caption}
+                    </p>
+
+                    <a
+                        class="event-link"
+                        href="${event.link.url}"
+                        target="_blank"
+                    >
+                        ${event.link.text}
+                    </a>
+                `;
                 }
             });
         }
@@ -141,6 +198,21 @@ nextBtn.addEventListener("click", () => {
     }
 
     renderCalendar(currentMonth, currentYear);
+});
+
+document.addEventListener("click", (e) => {
+
+    const clickedBlueDay = e.target.closest(".day.blue");
+
+    if (!clickedBlueDay && !secondEvent.contains(e.target)) {
+
+        secondEvent.classList.add("hidden");
+
+        document.querySelectorAll(".day.blue.selected").forEach(day => {
+            day.classList.remove("selected");
+        });
+    }
+
 });
 
 /* INITIAL RENDER */
