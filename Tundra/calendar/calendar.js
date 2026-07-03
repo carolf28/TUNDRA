@@ -15,27 +15,28 @@ const events = [
         date: "2026-07-18",
         type: "tundra",
 
-        title: "Album release",
+        title: "feiromanya @ ADAO",
 
-        image: "assets/eventimages/event1.webp",
-
-        caption: "The debut album is finally available on all streaming platforms.",
+        image: "../assets/eventimages/event1.webp",
 
         link: {
             text: "Listen now",
             url: "https://link.com"
-        }
+        },
+
+        caption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
     },
 
     {
         date: "2026-07-12",
         type: "tundra",
 
-        title: "OUTRO",
+        title: "concertos @ ADAO",
 
-        image: "assets/images/events/outro.webp",
+        image: "../assets/eventimages/event1.webp",
 
-        caption: "Description of the OUTRO event goes here.",
+        caption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
 
         link: {
             text: "More info",
@@ -68,6 +69,14 @@ const monthNames = [
     "Maio", "Junho", "Julho", "Agosto",
     "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
+
+/* FORMAT DATE */
+function formatDate(dateString) {
+
+    const [year, month, day] = dateString.split("-");
+  return `${Number(day)} de ${monthNames[Number(month) - 1]} ${year}`;
+}
+
 
 /* RENDER CALENDAR */
 function renderCalendar(month, year) {
@@ -138,7 +147,7 @@ function renderCalendar(month, year) {
                     secondEvent.classList.add("hidden");
 
                 eventInfo.innerHTML = `
-                    <p class="event-date">${event.date}</p>
+                    <p class="event-date">${formatDate(event.date)}</p>
 
                     <h2>${event.title}</h2>
 
@@ -148,10 +157,6 @@ function renderCalendar(month, year) {
                         alt="${event.title}"
                     >
 
-                    <p class="event-caption">
-                        ${event.caption}
-                    </p>
-
                     <a
                         class="event-link"
                         href="${event.link.url}"
@@ -159,6 +164,10 @@ function renderCalendar(month, year) {
                     >
                         ${event.link.text}
                     </a>
+
+                    <p class="event-caption">
+                        ${event.caption}
+                    </p>
                 `;
                 }
             });
