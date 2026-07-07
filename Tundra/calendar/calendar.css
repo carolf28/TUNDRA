@@ -56,6 +56,11 @@ body {
 /* LEFT */
 .calendar-left {
     width: 100%;
+
+    position: sticky;
+    top: 5vmin;
+
+    align-self: start;
 }
 
 /* RIGHT */
@@ -336,13 +341,14 @@ padding-right: clamp(6vmin, 10vw, 20vmin);
 }
 
 .links-extra-title {
-    top: 60vmin;
-    left: 15vmin;
+    position: absolute;
 
-    font-size: 2.5vmin;
-    font-weight: 400;
+    bottom: 30vmin;
+    left: 10vmin;
 
-    color: #000;
+    width: 18vmin; /* adjust as needed */
+    opacity: 0.8;
+    display: block;
 }
 
 .links-extra-home {
@@ -377,13 +383,13 @@ padding-right: clamp(6vmin, 10vw, 20vmin);
 }
 
 .links-extra-link-1 {
-    bottom: 20vmin;
-    right: 8vmin;
+    top: 30vmin;
+    right: 12vmin;
 }
 
 .links-extra-link-2 {
-    bottom: 8vmin;
-    right: 8vmin;
+    bottom: 35vmin;
+    right: 23vmin;
 }
 
 
