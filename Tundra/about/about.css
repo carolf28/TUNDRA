@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    font-family: "Times New Roman", serif;
+    color: #000;
+
+    background-image: url("../assets/images/background-image.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.page-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 5vmin;
+}
+
+/* LAYOUT */
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 0.5fr 4fr;
+    gap: clamp(8vmin, 10vw, 20vmin);
+
+    width: 100%;
+    align-items: start;
+}
+
+/* LEFT */
+
+.about-left {
+    width: 100%;
+}
+
+.about-title {
+    font-size: 2.5vmin;
+    font-weight: 400;
+    padding: 4vmin 0 0 4vmin;
+}
+
+/* RIGHT */
+
+.about-right {
+    width: 100%;
+    margin-top: 15vmin;
+}
+
+.about-text {
+    max-width: 60vmin;
+
+    font-size: 2.3vmin;
+    line-height: 1.25;
+    opacity: 0.5;
+}
+
+.about-text + .about-text {
+    margin-top: 4vmin;
+}
+
+.about-links {
+    display: flex;
+    gap: 4vmin;
+    margin-top: 6vmin;
+    opacity: 0.5;
+}
+
+.about-links a {
+    font-size: 2.3vmin;
+    color: #000;
+    text-decoration: none;
+}
+
+.about-links a:hover {
+    text-decoration: underline;
+}
+
+
+
+.about-home {
+    position: fixed;
+
+    right: 30vmin;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 15vmin;
+
+    z-index: 1000;
+}
+
+.about-home img {
+    display: block;
+    width: 100%;
+
+    transition: filter 0.3s ease;
+}
+
+.about-home:hover img {
+    filter:
+        drop-shadow(0 0 10px rgba(0, 255, 255, 0.9))
+        drop-shadow(0 0 25px rgba(255, 0, 255, 0.6));
+}
+
+
+.about-angariacao {
+    position: fixed;
+
+    right: 80vmin;
+    bottom: 15vmin;
+
+    width: 20vmin;
+
+    z-index: 1000;
+}
+
+.about-angariacao img {
+    display: block;
+    width: 100%;
+
+    transition: filter 0.3s ease;
+}
+
+.about-angariacao:hover img {
+    filter:
+        drop-shadow(0 0 10px rgba(0, 255, 255, 0.9))
+        drop-shadow(0 0 25px rgba(255, 0, 255, 0.6));
+}
+
+
+@media (max-width: 768px) {
+
+    .about-layout {
+        grid-template-columns: 1fr;
+        gap: 6vmin;
+    }
+
+    .about-text {
+        max-width: 100%;
+    }
+
+}
