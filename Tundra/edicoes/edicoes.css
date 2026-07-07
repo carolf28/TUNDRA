@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    font-family: "Times New Roman", serif;
+    color: #000;
+
+    background-image: url("../assets/images/background-image.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.page-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 5vmin;
+}
+
+/* LAYOUT */
+
+.edicoes-layout {
+    display: grid;
+    grid-template-columns: 0.5fr 4fr;
+    gap: clamp(8vmin, 10vw, 20vmin);
+
+    width: 100%;
+    align-items: start;
+}
+
+/* LEFT */
+
+.edicoes-left {
+    width: 100%;
+}
+
+.edicoes-title {
+    font-size: 2.5vmin;
+    font-weight: 400;
+    padding: 4vmin 0 0 4vmin;
+}
+
+/* RIGHT */
+
+.edicoes-right {
+    width: 100%;
+        padding-right: clamp(4vmin, 8vw, 12vmin);
+}
+
+/* GRID */
+
+.edicoes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3vmin;
+
+    width: 100%;
+}
+
+.edicao {
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+/* Temporary colours */
+
+.edicao-1 {
+    background: #ff00ff;
+}
+
+.edicao-2 {
+    background: #01ffff;
+}
+
+.edicao-3 {
+    background: #ffd500;
+}
+
+.edicao-4 {
+    background: #00c853;
+}
+
+.edicao-5 {
+    background: #ff6d00;
+}
+
+.edicao-6 {
+    background: #7c4dff;
+}
+
+.edicao {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+}
+
+.edicao img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.edicoes-home {
+    position: fixed;
+
+    right: 10vmin;
+    bottom: 2vmin;
+
+    transform: translateY(-50%);
+
+    width: 15vmin;
+
+    z-index: 1000;
+}
+
+.edicoes-home img {
+    display: block;
+
+    width: 100%;
+
+    transition: filter 0.3s ease;
+}
+
+.edicoes-home:hover img {
+    filter:
+        drop-shadow(0 0 10px rgba(0, 255, 255, 0.9))
+        drop-shadow(0 0 25px rgba(255, 0, 255, 0.6));
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .edicoes-layout {
+        grid-template-columns: 1fr;
+        gap: 6vmin;
+    }
+
+    .edicoes-right {
+        margin-top: 0;
+    }
+
+    .edicoes-grid {
+        max-width: 100%;
+    }
+
+}
